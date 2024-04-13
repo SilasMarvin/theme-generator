@@ -2,11 +2,13 @@
 
 log_user 0
 
+set stty_init raw
+
 set initial_theme [lindex $argv 0]
 
 spawn ./scripts/spawn_helix.sh
 
-send ":theme $initial_theme"
+send ":theme $initial_theme\r"
 
 set action ""
 interact {

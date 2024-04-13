@@ -20,6 +20,10 @@ impl<'a> SuperGood<'a> {
         println!("{}", self.name);
     }
 
+    fn print_name_and(&self, and: &str) {
+        println!("{} and {and}", self.name);
+    }
+
     fn super_complicated(&self) -> (Self, Self, Self) {
         let mut items: Vec<Self> = std::iter::repeat(self.clone()).take(3).collect();
         (
