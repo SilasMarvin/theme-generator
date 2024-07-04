@@ -24,3 +24,11 @@ Running any of the two above commands will open up helix with a generated theme.
 - Press `tab` to change to the next generated theme.
 - Press `s` to save the theme in your helix themes directory.
 - Press `f` to freeze a color and randomly generate all other colors. After pressing `f` press the corresponding number / letter of the color you want to freeze.
+
+## Adding New Editors
+
+It should be pretty easy to add new editors. Just add a template and the corresponding expect script.
+
+## Adding New Templates
+
+You can add your own template pretty easily. Checkout the presets directory for inspiration.
