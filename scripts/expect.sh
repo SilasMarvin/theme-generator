@@ -17,7 +17,12 @@ interact {
     set action "tab"
     send ":q!\r"
   }
-  # Tab
+  # Lowercase s
+  \163 {
+    set action "s"
+    send ":q!\r"
+  }
+  # Lowercase d
   \144 {
     set action "d"
     send ":q!\r"

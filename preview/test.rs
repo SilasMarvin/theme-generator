@@ -3,6 +3,11 @@ use std::collections::HashMap;
 
 const SUPER_GOOD: &'static str = "SUPER GOOD";
 
+const REALLY_BIG_STRING: &'static str = r#"
+    Here are some things we should talk about in this string. 
+    These are things that are for sure worth knowing.
+"#;
+
 /// Here are some comments explaining what this is
 /// Commets are a big part of rust so we want to make sure these look good
 #[derive(Debug, Clone)]
@@ -11,8 +16,14 @@ struct SuperGood<'a> {
     id: &'a str,
 }
 
+pub Enum Tet {
+ TTEat,
+ YYeat
+}
+
 impl<'a> SuperGood<'a> {
-    fn new(name: String, id: &'a str) -> Self {
+    fn new(mut name: String, id: &'a str) -> Self {
+        name.push("test");
         Self { name, id }
     }
 
@@ -24,6 +35,7 @@ impl<'a> SuperGood<'a> {
         println!("{} and {and}", self.name);
     }
 
+    // A super complicated function
     fn super_complicated(&self) -> (Self, Self, Self) {
         let mut items: Vec<Self> = std::iter::repeat(self.clone()).take(3).collect();
         (

@@ -152,10 +152,11 @@ grey              = "{{color10}}"
 indent            = "{{color11}}"
 orange            = "{{color12}}" 
 pink              = "{{color13}}"
-red               = "{{color15}}"
-selection         = "{{color16}}"
-whitespace        = "{{color17}}"
-yellow            = "{{color18}}" 
+red               = "{{color14}}"
+selection         = "{{color15}}"
+whitespace        = "{{color16}}"
+yellow            = "{{color17}}" 
 EndOfText
 
-cargo run --release -- --template "$template" --color-count 19 --background-color-count 1
+clear
+cargo run --release -- --template "$template" --color-count 18 --background-color-count 1

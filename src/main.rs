@@ -4,6 +4,7 @@ use rand::seq::SliceRandom;
 use rand::{distributions::Alphanumeric, Rng};
 use std::process::{Command, Stdio};
 
+use clap::Parser;
 use crossterm::{
     event::{self, Event, KeyCode},
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
@@ -11,7 +12,6 @@ use crossterm::{
 };
 use ratatui::{prelude::*, widgets::*};
 use std::io::{self, stdout};
-use clap::Parser;
 
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
@@ -128,7 +128,7 @@ impl<'a> Palette<'a> {
         }
         let bg_slice = &palette_colors[0..background_color_count].to_owned();
         for _ in 0..color_count - background_color_count {
-            let color = try_get_color(colors, bg_slice, 3., 19., None, None)?;
+            let color = try_get_color(colors, bg_slice, 3., 20., None, None)?;
             palette_colors.push(color);
         }
         let name = gen_random_theme_name();
@@ -147,10 +147,30 @@ impl<'a> Palette<'a> {
 
     fn save_to_helix_themes(&'a self) -> anyhow::Result<()> {
         let theme = self.to_helix_theme();
+        let home = std::env::var("HOME").context("please set the HOME environment variable")?;
         std::fs::write(
-            &format!("/Users/silas/.config/helix/themes/{}.toml", self.name),
+            &format!("{home}/.config/helix/themes/{}.toml", self.name),
             theme,
-        )?;
+        )
+        .with_context(|| {
+            format!(
+                "could not write to file: {home}/.config/helix/themes/{}.toml",
+                self.name
+            )
+        })?;
+        Ok(())
+    }
+
+    fn delete_from_helix_themes(&'a self) -> anyhow::Result<()> {
+        let home = std::env::var("HOME").context("please set the HOME environment variable")?;
+        std::fs::remove_file(&format!("{home}/.config/helix/themes/{}.toml", self.name))
+            .with_context(|| {
+                format!(
+                    "could not delete file: {home}/.config/helix/themes/{}.toml",
+                    self.name
+                )
+            })?;
+
         Ok(())
     }
 
@@ -279,7 +299,12 @@ fn main() -> anyhow::Result<()> {
         .map(|c| c.try_into())
         .collect::<anyhow::Result<Vec<Color>>>()?;
 
-    let mut palette = Palette::generate_random_palette(args.template, args.color_count, args.background_color_count, &colors)?;
+    let mut palette = Palette::generate_random_palette(
+        args.template,
+        args.color_count,
+        args.background_color_count,
+        &colors,
+    )?;
     loop {
         palette.save_to_helix_themes()?;
 
@@ -293,6 +318,11 @@ fn main() -> anyhow::Result<()> {
         if out.is_empty() {
             anyhow::bail!("bad output");
         } else if out.contains("d") {
+            palette.delete_from_helix_themes()?;
+            println!("\n\n\nHelix Theme:\n{}", palette.to_helix_theme());
+            break;
+        } else if out.contains("s") {
+            println!("Saved as: {}", palette.name);
             break;
         } else if out.contains("f") {
             enable_raw_mode()?;
