@@ -1,4 +1,4 @@
-# theme-generator
+# Theme Generator
 
 A somewhat random interactive theme-generator that pulls from [Color Names](https://github.com/meodai/color-names), generates a theme, and opens up Helix with that theme.
 
