@@ -6,6 +6,8 @@ I wrote this because I wanted to make a color scheme but I needed to see it in m
 
 https://github.com/SilasMarvin/theme-generator/assets/19626586/a6a82137-19a0-40f7-8f6a-d9a7372a20ae
 
+We utilize expect to wrap Helix and listen for keystrokes that trigger changing or saving the theme. You can move around and use Helix normally otherwise.
+
 ## Run
 
 Run with either:
