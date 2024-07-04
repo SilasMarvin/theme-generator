@@ -1,6 +1,6 @@
 # theme-generator
 
-That pulls from [Color Names](https://github.com/meodai/color-names), generates a theme, and opens up Helix with that theme.
+A somewhat random interactive theme-generator that pulls from [Color Names](https://github.com/meodai/color-names), generates a theme, and opens up Helix with that theme.
 
 I wrote this because I wanted to make a color scheme but I needed to see it in my editor, not just on a pallete to know whether I liked it or not.
 

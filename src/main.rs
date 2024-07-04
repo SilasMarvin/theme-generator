@@ -36,13 +36,11 @@ fn gen_random_theme_name() -> String {
 
 #[derive(Debug, serde::Deserialize)]
 struct ValidColorItem {
-    name: String,
     hex: String,
 }
 
 #[derive(Debug)]
 struct Color {
-    name: String,
     srgb: Srgb<u8>,
     hsl: Hsl,
 }
@@ -63,7 +61,6 @@ impl TryFrom<ValidColorItem> for Color {
         let color: Srgb<f32> = srgb_color.into_format();
         let hsl_color: Hsl = Hsl::from_color_unclamped(color);
         Ok(Self {
-            name: value.name,
             srgb: srgb_color,
             hsl: hsl_color,
         })
