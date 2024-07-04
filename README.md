@@ -10,7 +10,7 @@ We utilize expect to wrap Helix and listen for keystrokes that trigger changing 
 
 ## Run
 
-Run with either:
+Clone the repository and run with either:
 ```
 ./presets/dracula_based.sh
 ```
