@@ -4,6 +4,8 @@ A somewhat random interactive theme-generator that pulls from [Color Names](http
 
 I wrote this because I wanted to make a color scheme but I needed to see it in my editor, not just on a pallete to know whether I liked it or not.
 
+https://github.com/SilasMarvin/theme-generator/assets/19626586/a6a82137-19a0-40f7-8f6a-d9a7372a20ae
+
 ## Run
 
 Run with either:
